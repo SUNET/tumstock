@@ -1,0 +1,14 @@
+version: "3"
+services:
+   tumstock:
+      image: docker.sunet.se/tumstock:${TUMSTOCK_VERSION:-latest}
+      container_name: tumstock
+      ports:
+         - "3000:3000"
+      environment:
+         - REDIS_HOST=redis
+         - SSL_KEY=${SSL_KEY}
+         - SSL_CERT=${SSL_CERT}
+   redis:
+      image: redis:${REDIS_VERSION:-latest}
+      container_name: redis
