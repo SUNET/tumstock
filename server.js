@@ -5,10 +5,13 @@ const https = require('https');
 const http = require('http');
 const cors = require('cors');
 const redis = require('redis');
-const client = redis.createClient();
 
 const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || 3000;
+const REDIS_HOST = process.env.REDIS_HOST || '127.0.0.1';
+const REDIS_PORT = parseInt(process.env.REDIS_PORT) || 6379;
+
+const client = redis.createClient(REDIS_PORT, REDIS_HOST);
 
 const app = express();
 app.use(express.json());
